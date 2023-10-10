@@ -27,12 +27,12 @@ class Triangle {
   }
 
   get perimeter() {
-    return this.a + this.b + this.c;
+    let perimeter = this.a + this.b + this.c;
+    return perimeter;
   }
 
   get area() {
-    const halfPerimeter = (this.a + this.b + this.c) / 2;
-    return +Math.sqrt(halfPerimeter * (halfPerimeter - this.a) * (halfPerimeter - this.b) * (halfPerimeter - this.c)).toFixed(3);
+    return +Math.sqrt(this.perimeter / 2 * (this.perimeter / 2 - this.a) * (this.perimeter / 2 - this.b) * (this.perimeter / 2 - this.c)).toFixed(3);
   }
 }
 
@@ -40,17 +40,13 @@ function getTriangle(a, b, c) {
   try {
     return new Triangle(a, b, c);
   } catch (error) {
-    const triangle = new Triangle(0, 0, 0);
-    Object.defineProperty(triangle, 'perimeter', {
-      get: function () {
+    return {
+      get area() {
+        return 'Ошибка! Треугольник не существует';
+      },
+      get perimeter() {
         return 'Ошибка! Треугольник не существует';
       }
-    });
-    Object.defineProperty(triangle, 'area', {
-      get: function () {
-        return 'Ошибка! Треугольник не существует';
-      }
-    });
-    return triangle;
+    }
   }
 }
