@@ -25,8 +25,8 @@ class AlarmClock {
     if (this.intervalId) {
       return;
     }
-    const currentTime = this.getCurrentFormattedTime();
     const scheduleCall = () => {
+      const currentTime = this.getCurrentFormattedTime();
       this.alarmCollection.forEach(alarm => {
         if (alarm.time === currentTime && alarm.canCall === true) {
           alarm.canCall = false;
